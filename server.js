@@ -31,9 +31,27 @@ app.use(express.static('./public'));
 // [body-parser](https://github.com/expressjs/body-parser).  Note, it does
 // not handle multi-part forms for file upload.
 
-var bodyParser = require('body-parser');
 var bpOpts = { extended: false };
+var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded(bpOpts));
+
+// This middleware allows us to store user sessions.  We are using
+// [express-session](https://github.com/expressjs/session).  For the moment,
+// we are just storing sessions in memory.  Eventually, we would likely store
+// them in a server-shareable session store, such as MongoDb, or Redis.
+
+if (! process.env.COOKIE_SECRET) {
+  console.log('The environment variable "COOKIE_SECRET" is REQUIRED to be set on startup.');
+  process.exit();
+}
+
+var sessionOpts = {
+  resave: false,
+  saveUninitialized: false,
+  secret: process.env.COOKIE_SECRET };
+
+var session = require('express-session');
+app.use(session(sessionOpts));
 
 // The controllers contain all the routes.  When we require a folder like this,
 // require looks for an index.js in that folder and loads that.  Also, note we
