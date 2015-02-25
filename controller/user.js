@@ -66,6 +66,6 @@ module.exports = function(app) {
   
   app.post('/user/register', register);
   app.post('/user/login', passport.authenticate('local',
-        { successRedirect: '/success', failureRedirect: '/failure' })
+        { successRedirect: '/success.html', failureRedirect: '/failure.html' })
   );
 };
