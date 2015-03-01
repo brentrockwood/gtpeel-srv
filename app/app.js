@@ -7,6 +7,8 @@ angular.module('myApp', [
   'myApp.view2',
   'myApp.login'
 ]).
-config(['$routeProvider', function($routeProvider) {
+config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider.otherwise({redirectTo: '/login'});
+
+  $locationProvider.html5Mode(true).hashPrefix('!');
 }]);
