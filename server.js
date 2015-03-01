@@ -27,6 +27,12 @@ app.use(logger('dev'));
 
 app.use(express.static('./public'));
 
+// This placeholder middleware will serve up all files in the `app` directory at the URL
+// `/app`.
+// TODO: Remove this if/when code in `app` is processed/dumped into `public`.
+
+app.use('/app', express.static('./app'));
+
 // This middleware parses our form bodies.  We are using
 // [body-parser](https://github.com/expressjs/body-parser).  Note, it does
 // not handle multi-part forms for file upload.
