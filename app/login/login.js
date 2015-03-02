@@ -2,7 +2,7 @@
 
 angular.module('myApp.login', ['ngRoute', 'myApp.user'])
 
-.config(['$routeProvider', function($routeProvider) {
+.config(function($routeProvider) {
   $routeProvider.when('/login', {
     templateUrl: 'login/login.html',
     controller: 'LoginCtrl'
@@ -13,9 +13,9 @@ angular.module('myApp.login', ['ngRoute', 'myApp.user'])
   });
 
   // TODO: A $http interceptor to handle 401 status codes would go here.
-}])
+})
 
-.controller('LoginCtrl', ['$scope', 'user', '$location', function($scope, user, $location) {
+.controller('LoginCtrl', function($scope, user, $location) {
   function postLogin() {
     $location.path('/view1');
   }
@@ -49,4 +49,4 @@ angular.module('myApp.login', ['ngRoute', 'myApp.user'])
       console.log('ERROR! ' + errorData);
     });
   }
-}]);
+});

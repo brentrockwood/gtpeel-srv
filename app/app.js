@@ -7,10 +7,10 @@ angular.module('myApp', [
   'myApp.view2',
   'myApp.login'
 ]).
-config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+config(function($routeProvider, $locationProvider) {
   // Set the default route.
   $routeProvider.otherwise({redirectTo: '/login'});
 
   // Use friendly route URLs.
   $locationProvider.html5Mode(true).hashPrefix('!');
-}]);
+});
