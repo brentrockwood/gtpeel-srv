@@ -1,13 +1,13 @@
 <h1>User Mockup</h1>
-<form method='post' action='/user/login' id='login'>
+<form name="loginForm" ng-submit="login()">
   <h2>Log in</h2>
   <label>Email:
-    <input id='username' name='username'/>
+    <input id="username" name="username" ng-model="userName" required/>
   </label>
   <label>Password:
-    <input id='password' name='password' type='password'/>
+    <input id="password" name="password" ng-model="userPassword" type="password" required/>
   </label>
-  <input type='submit' />
+  <input type="submit" />
 </form>
 <form method='post' action='/user/register' id='login'>
   <h2>Register</h2>
