@@ -35,8 +35,18 @@ angular.module('myApp.login', ['ngRoute', 'myApp.user'])
       postLogin();
     }, function(errorData) {
       // Error during login.
-      console.log('ERROR!' + errorData);
+      console.log('ERROR! ' + errorData);
       that.showLoginError = true;
+    });
+  }
+
+  $scope.register = function() {
+    user.register(this.userName, this.userPassword)
+    .then(function(data) {
+      // Successfully registered!
+      postLogin(); // Presume the new user is logged in automatically.
+    }, function(errorData) {
+      console.log('ERROR! ' + errorData);
     });
   }
 }]);

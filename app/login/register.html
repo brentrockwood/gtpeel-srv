@@ -1,10 +1,10 @@
 <h1>Register</h1>
-<form method='post' action='/user/register' id="register">
+<form id="register" ng-submit="register()">
   <label>Email:
-    <input id="username" name="username" required autofocus>
+    <input id="username" name="username" ng-model="userName" required autofocus>
   </label>
   <label>Password:
-    <input id="password" name="password" type="password" required/>
+    <input id="password" name="password" type="password" ng-model="userPassword" required/>
   </label>
   <input type="submit" />
 </form>
