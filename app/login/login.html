@@ -1,0 +1,14 @@
+<h1>Log in</h1>
+<form name="loginForm" ng-submit="login()">
+  <div id="login-error" ng-show="showLoginError">
+    The entered credentials are incorrect.
+  </div>
+  <label>Email:
+    <input id="username" name="username" ng-model="userName" required autofocus/>
+  </label>
+  <label>Password:
+    <input id="password" name="password" ng-model="userPassword" type="password" required/>
+  </label>
+  <input type="submit" />
+</form>
+<a href="/register">Need an account?</a>

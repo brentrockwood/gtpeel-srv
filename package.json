@@ -1,5 +1,6 @@
 {
   "name": "gtpeel-srv",
+  "private": true,
   "version": "1.0.0",
   "description": "Node server for three.js project.",
   "readme": "README.md",
@@ -16,6 +17,9 @@
     "url": "https://github.com/brentrockwood/gtpeel-srv/issues"
   },
   "homepage": "https://github.com/brentrockwood/gtpeel-srv",
+  "devDependencies": {
+    "bower": "^1.3.1"
+  },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.12.0",
@@ -26,5 +30,8 @@
     "morgan": "^1.5.1",
     "passport": "^0.2.1",
     "passport-local": "^1.0.0"
+  },
+  "scripts": {
+    "postinstall": "bower install"
   }
 }

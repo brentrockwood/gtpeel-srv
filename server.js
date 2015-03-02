@@ -27,6 +27,11 @@ app.use(logger('dev'));
 
 app.use(express.static('./public'));
 
+// This placeholder middleware will serve up all files in the `app` directory.
+// TODO: Remove this if/when code in `app` is processed/dumped into `public`.
+
+app.use(express.static('./app'));
+
 // This middleware parses our form bodies.  We are using
 // [body-parser](https://github.com/expressjs/body-parser).  Note, it does
 // not handle multi-part forms for file upload.
@@ -34,6 +39,10 @@ app.use(express.static('./public'));
 var bpOpts = { extended: false };
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded(bpOpts));
+
+// This middleware parses JSON data.
+
+app.use(bodyParser.json());
 
 // This middleware allows us to store user sessions.  We are using
 // [express-session](https://github.com/expressjs/session).  For the moment,
@@ -59,6 +68,25 @@ app.use(session(sessionOpts));
 // injection.
 
 require('./controller')(app);
+
+// Support AngularJS HTML5-mode URLs.
+// Requests to nonexistent routes (presumably client-side routes) are redirected
+// to the client-side application.
+var url = require('url');
+app.get('/*', function(req, res) {
+  // Only send the client redirect for requests that accept html content types.
+  res.format({
+    html: function() {
+      return res.redirect(url.format({
+        host: req.get('Host'),
+        hash: '!' + req.url // Include the hash prefix.
+      }));
+    },
+    default: function() {
+      res.sendStatus(404);
+    }
+  });
+});
 
 // Listen on port 5000 by default, if the port environment variable is not set.
 // It is set by default, for example, on Heroku.

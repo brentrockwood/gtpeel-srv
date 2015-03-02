@@ -44,5 +44,14 @@ module.exports = function(app) {
     bcrypt.compare(pw, this.password, cb);
   };
 
+  // Configure options for to `toObject()` function.
+
+  schema.set('toObject', {
+    transform: function(doc, ret, options) {
+      // Remove sensitive information.
+      delete ret.password;
+    }
+  });
+
   return db.model('User', schema);
 };
