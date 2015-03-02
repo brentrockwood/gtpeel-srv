@@ -40,6 +40,10 @@ var bpOpts = { extended: false };
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded(bpOpts));
 
+// This middleware parses JSON data.
+
+app.use(bodyParser.json());
+
 // This middleware allows us to store user sessions.  We are using
 // [express-session](https://github.com/expressjs/session).  For the moment,
 // we are just storing sessions in memory.  Eventually, we would likely store
