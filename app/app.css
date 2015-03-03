@@ -1,10 +1,27 @@
 /* app css stylesheet */
+body {
+  margin: 0em;
+}
 
 .menu {
   list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+  margin: 0 0 2em;
+  padding: 0.5em 0 0.5em 0.5em;
+  background-color: black;
+  color: white;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+}
+
+.menu a:visited {
+  color: white;
+}
+
+.menu a:active {
+  color: rgba(255, 0, 0, 0.75);
 }
 
 .menu:before {
@@ -27,6 +44,10 @@
 .menu > li:nth-child(1):before {
   content: "";
   padding: 0;
+}
+
+div.ng-scope {
+  margin: 1em;
 }
 
 .ng-invalid {

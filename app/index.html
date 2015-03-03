@@ -18,10 +18,11 @@
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
-<body>
-  <ul class="menu">
-    <li><a href="/view1">view1</a></li>
-    <li><a href="/view2">view2</a></li>
+<body ng-controller='AppCtrl'>
+  <ul class="menu" ng-if='isLoggedIn()'>
+    <li><a href="/designs">My designs</a></li>
+    <li><a href="/account">Account</a></li>
+    <li><a ng-click='logout()'>Log Out</a></li>
   </ul>
 
   <!--[if lt IE 7]>
@@ -33,8 +34,8 @@
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="app.js"></script>
-  <script src="view1/view1.js"></script>
-  <script src="view2/view2.js"></script>
+  <script src="designs/designs.js"></script>
+  <script src="account/account.js"></script>
   <script src="login/login.js"></script>
   <script src="components/user/user.js"></script>
 </body>

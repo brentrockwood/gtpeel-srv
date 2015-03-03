@@ -17,7 +17,7 @@ angular.module('myApp.login', ['ngRoute', 'myApp.user'])
 
 .controller('LoginCtrl', function($scope, user, $location) {
   function postLogin() {
-    $location.path('/view1');
+    $location.path('/designs');
   }
 
   if(user.isLoggedIn()) {

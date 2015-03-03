@@ -7,12 +7,20 @@ angular.module('myApp.user', [])
   var current = null;
 
   this.getCurrent = function() {
-    return current;
-  }
+    $http.get('/user/current')
+    .success(function() {
+      current = data;
+      return data;
+    })
+    .error(function() {
+      current = null;
+      return null;
+    });
+  };
 
   this.isLoggedIn = function() {
     return typeof(current) !== 'undefined' && current != null;
-  }
+  };
 
   // Attempts to log in with the given username/password.
   this.login = function(username, password) {
@@ -29,13 +37,19 @@ angular.module('myApp.user', [])
     .error(deferred.reject);
 
     return deferred.promise;
-  }
+  };
 
   this.logout = function() {
-    // TODO: Call the backend logout endpoint.
-    console.log('WARNING! Logging out is not as secure as it should be!');
+    var deferred = $q.defer();
 
-    current = null;
+    $http.get('/user/logout')
+    .success(function() {
+      current = null;
+      deferred.resolve();
+    })
+    .error(deferred.reject);
+
+    return deferred.promise;
   }
 
   // Attempts to create a new user account.

@@ -20,6 +20,8 @@ function register(req, res) {
       return res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err);
     }
 
+    // Automatically log in the newly saved user.
+    req.login();
     res.send(savedUser);
   });
 }
@@ -67,5 +69,16 @@ module.exports = function(app) {
   app.post('/user/register', register);
   app.post('/user/login', passport.authenticate('local'), function(req, res) {
     res.send(req.user.toObject());
+  });
+  app.get('/user/current', function(req,res) {
+    if(req.user) {
+      return res.send(req.user.toObject());
+    }
+
+    res.status(httpStatus.UNAUTHORIZED).send('UNAUTHORIZED');
+  });
+  app.get('logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
   });
 };
