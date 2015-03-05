@@ -1,11 +1,9 @@
 <h1>Register</h1>
 <form id="register" ng-submit="register()">
-  <label>Email:
-    <input id="username" name="username" ng-model="userName" required autofocus>
-  </label>
-  <label>Password:
-    <input id="password" name="password" type="password" ng-model="userPassword" required/>
-  </label>
+  <label for='username'>Email:</label>
+  <input id="username" name="username" ng-model="userName" required autofocus><br/>
+  <label for='password'>Password:</label>
+  <input id="password" name="password" type="password" ng-model="userPassword" required/><br/>
   <input type="submit" />
 </form>
 <a href="/login">Need to log in instead?</a>

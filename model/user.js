@@ -7,7 +7,14 @@ module.exports = function(app) {
 
   var schema = new db.Schema({
     email: { type: String, index: true, unique: true },
-    password: { type: String }
+    password: { type: String },
+    firstName: { type: String },
+    lastName: { type: String },
+    address1: { type: String },
+    address2: { type: String },
+    city: { type: String },
+    state: { type: String },
+    zip: { type: String }
   });
 
 // Hash the password before saving the user.  The work factor can be adjusted

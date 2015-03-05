@@ -9,6 +9,18 @@ angular.module('myApp.account', ['ngRoute'])
   });
 })
 
-.controller('accountCtrl', function() {
+.controller('accountCtrl', function($scope, $http) {
+  $scope.showAccountError = false;
 
+  $scope.save = function() {
+    console.log('saving');
+
+    $http.post('/user/update', this.user)
+    .success(function() {
+      $scope.showAccountError = false;
+    })
+    .error(function(data, status) {
+      $scope.showAccountError = true;
+    });
+  };
 });

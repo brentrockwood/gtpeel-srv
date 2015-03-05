@@ -49,6 +49,10 @@ app.use(bodyParser.json());
 // we are just storing sessions in memory.  Eventually, we would likely store
 // them in a server-shareable session store, such as MongoDb, or Redis.
 
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var sessionStore = new MongoStore({ mongooseConnection: db.connection });
+
 if (! process.env.COOKIE_SECRET) {
   console.log('The environment variable "COOKIE_SECRET" is REQUIRED to be set on startup.');
   process.exit();
@@ -57,9 +61,9 @@ if (! process.env.COOKIE_SECRET) {
 var sessionOpts = {
   resave: false,
   saveUninitialized: false,
-  secret: process.env.COOKIE_SECRET };
+  secret: process.env.COOKIE_SECRET,
+  store: sessionStore };
 
-var session = require('express-session');
 app.use(session(sessionOpts));
 
 // The controllers contain all the routes.  When we require a folder like this,

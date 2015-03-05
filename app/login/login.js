@@ -16,13 +16,11 @@ angular.module('myApp.login', ['ngRoute', 'myApp.user'])
 })
 
 .controller('LoginCtrl', function($scope, user, $location) {
-  function postLogin() {
-    $location.path('/designs');
-  }
+  $scope.showLoginError = false;
 
-  if(user.isLoggedIn()) {
-    // User is already logged in.
-    postLogin();
+  function postLogin(user) {
+    $location.path('/designs');
+    $scope.$parent.user = user;
   }
 
   $scope.login = function() {
@@ -32,7 +30,7 @@ angular.module('myApp.login', ['ngRoute', 'myApp.user'])
     user.login(this.userName, this.userPassword)
     .then(function(data) {
       // Successfully logged in!
-      postLogin();
+      postLogin(data);
     }, function(errorData) {
       // Error during login.
       console.log('ERROR! ' + errorData);
@@ -41,12 +39,16 @@ angular.module('myApp.login', ['ngRoute', 'myApp.user'])
   }
 
   $scope.register = function() {
+    var that = this;
+    this.showLoginError = false;
+
     user.register(this.userName, this.userPassword)
     .then(function(data) {
       // Successfully registered!
-      postLogin(); // Presume the new user is logged in automatically.
+      postLogin(data); // Presume the new user is logged in automatically.
     }, function(errorData) {
       console.log('ERROR! ' + errorData);
+      that.showLoginError = true;
     });
   }
 });

@@ -16,19 +16,18 @@ config(function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true).hashPrefix('!');
 })
 
-.run(function(user, $location) {
-  if(!user.getCurrent()) {
-    $location.path('/');
-  }
-})
-
 .controller('AppCtrl', function($scope, user, $location) {
-  $scope.isLoggedIn = user.isLoggedIn;
-  $scope.getCurrent = user.getCurrent;
+  var getUser = user.getCurrent();
+
+  getUser.then(function(data) {
+    $scope.user = data;
+  }, function() {
+    $location.path('/login');
+  });
 
   $scope.logout = function() {
+    $location.path('/login');
     user.logout();
-    $location.path('/');
-    $location.replace();
+    $scope.user = null;
   };
 });

@@ -1,3 +1,43 @@
-<h2>Your Account</h2>
-<p>This is where your account information goes.</p>
+<h2>Account Information</h2>
+
+<form name='accountForm' ng-submit='save()'>
+  <div id='account-error' ng-show='showAccountError'>An error occurred while updating your account information.</div>
+  <br/>
+  
+  <label for='email'>Email:</label>
+    <input id='email' ng-model='user.email' />
+  <br/>
+
+  <label for='firstName'>First name:</label>
+    <input id='firstName' ng-model='user.firstName' />
+  <br/>
+
+  <label for='lastName'>Last name:</label>
+    <input id='lastName' ng-model='user.lastName' />
+  <br/>
+
+  <h3>Billing Address</h3>
+
+  <label for='address1'>Line 1:</label>
+    <input id='address1' ng-model='user.address1' />
+  <br/>
+
+  <label for='address2'>Line 2:</label>
+    <input id='address2' ng-model='user.address2' />
+  <br/>
+
+  <label for='city'>City:</label>
+    <input id='city' ng-model='user.city' />
+  <br/>
+
+  <label for='state'>State:</label>
+    <input id='state' ng-model='user.state' />
+  <br/>
+
+  <label for='zip'>Zip:</label>
+    <input id='zip' ng-model='user.zip' />
+  <br/>
+
+  <input type='submit'/>
+</form>
 

@@ -57,3 +57,8 @@ div.ng-scope {
 #login-error {
   color: red;
 }
+
+label {
+  width: 7em;
+  display: inline-block;
+}
