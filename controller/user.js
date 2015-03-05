@@ -32,14 +32,12 @@ function register(req, res) {
 }
 
 function update(req, res) {
-  console.log('bod is ' + JSON.stringify(req.body));
-  
   User.findOneAndUpdate({_id: req.body._id }, req.body, function(err, data) {
     if(err) {
       return res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err);
     }
 
-    console.log('data is ' + data);
+    req.session.passport.user = data;
     res.send('OK');
   })
 
