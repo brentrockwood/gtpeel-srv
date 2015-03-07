@@ -62,3 +62,8 @@ label {
   width: 7em;
   display: inline-block;
 }
+
+#render {
+  height: 10em;
+  width: 10em;
+}

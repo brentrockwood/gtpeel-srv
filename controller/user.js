@@ -40,18 +40,6 @@ function update(req, res) {
     req.session.passport.user = data;
     res.send('OK');
   })
-
-  /*
-  var user = new User(req.body);
-
-  user.save(function(err, savedUser) {
-    if(err) {
-      return res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err);
-    }
-
-    res.send(savedUser);
-  });
-  */
 }
 
 // We are using [Passport](http://passportjs.org/guide/username-password/) for
