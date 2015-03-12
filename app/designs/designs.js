@@ -12,9 +12,16 @@ function render(element, geometry) {
   material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
 
   var temp = new THREE.BoxGeometry( 200, 200, 200)
-  //geometry = new THREE.Geometry(geometry);
-  mesh = new THREE.Mesh( geometry, material );
-  scene.add( mesh );
+
+  var loader = new THREE.ObjectLoader();
+  var geometries = loader.parseGeometries(Array.isArray(geometry) ? geometry : [geometry]);
+
+  for(var key in geometries) {
+    var geom = geometries[key];
+
+    mesh = new THREE.Mesh( geom, material );
+    scene.add( mesh );
+  }
 
   renderer = new THREE.WebGLRenderer();
   renderer.setSize( element.innerWidth(), element.innerHeight() );
